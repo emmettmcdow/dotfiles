@@ -1,0 +1,56 @@
+" Settings
+set number
+set relativenumber
+set cursorline
+set showmatch
+set hlsearch
+set ruler
+set wildmenu
+set scrolloff=20
+set foldmethod=indent
+set mouse=a
+let NERDTreeQuitOnOpen=1
+set re=0
+
+
+" Shortcuts
+
+" esc - close search
+" nnoremap <silent> <esc> :noh<cr><esc>
+
+" open-close folding
+nnoremap <space> za
+vnoremap <space> zf
+
+" copy-paste remap
+vnoremap <C-c> "*y
+vnoremap <C-v> "*p
+
+" statusline
+set laststatus=2
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':' none '
+endfunction
+
+set statusline=
+set statusline+=%#StatusLine#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#CursorColumn#
+set statusline+=\ %f
+set statusline+=
+set statusline+=%=
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+
+
+
+" etc
+" if opening vim without arguments, open nerdtree
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
