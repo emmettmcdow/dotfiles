@@ -110,9 +110,6 @@ alias docker_restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
 alias osspi="/Users/emcdow/Documents/osspi-cli/virtualenv/bin/python3 /Users/emcdow/Documents/osspi-cli/osspi.py"
 
 # <<< conda initialize <<<
-export AWS_ACCESS_KEY_ID=AKIAWLU3NUWTLAG565OY
-export AWS_SECRET_ACCESS_KEY=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
-export AWS_DEFAULT_REGION=us-east-2
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
