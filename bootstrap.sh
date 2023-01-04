@@ -29,7 +29,7 @@ function assertZSH() {
 
 function assertOHMY() {
 	# Check for oh-my-zsh
-  [ -d "~/.oh-my-zsh" ] && return 0
+  [ -d "$HOME/.oh-my-zsh" ] && return 0
 
 	# Install oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && return 0
