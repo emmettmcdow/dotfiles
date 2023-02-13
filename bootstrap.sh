@@ -22,7 +22,7 @@ function assertZSH() {
 		return 1
 	fi
 
-	$("sudo ${PM} install -y zsh") || echo "failed to install zsh, exiting" && return 1
+	sudo $PM install -y zsh || echo "failed to install zsh, exiting" && return 1
 	sudo chsh -s $(which zsh) $USER
 	return 0
 }
