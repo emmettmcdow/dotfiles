@@ -1,3 +1,29 @@
+" Plugins - vim-plug - https://github.com/junegunn/vim-plug
+call plug#begin()
+
+" Conquer Of Completion - https://github.com/neoclide/coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Vim-polyglot - code highlighting
+Plug 'sheerun/vim-polyglot'
+
+" vim-fugitive - git plugin
+Plug 'tpope/vim-fugitive'
+
+"Vim Indent Guides - https://github.com/preservim/vim-indent-guides
+Plug 'nathanaelkane/vim-indent-guides'
+
+"Vim Peekabo - see registers in sidebar - https://github.com/junegunn/vim-peekaboo
+Plug 'junegunn/vim-peekaboo'
+
+"Vim Airline - better statusline - https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline'
+" https://github.com/vim-airline/vim-airline/wiki/Screenshots
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
+
 " Settings
 set number
 set relativenumber
@@ -8,9 +34,20 @@ set ruler
 set wildmenu
 set scrolloff=20
 set foldmethod=indent
-set mouse=a
-let NERDTreeQuitOnOpen=1
 set re=0
+" Indent Guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black   ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray ctermbg=gray
+
+" Tab settings, these should all equal the same
+set ts=4
+set sts=4
+set sw=4
+" https://stackoverflow.blog/2017/06/15/developers-use-spaces-make-money-use-tabs/
+set expandtab
+
 
 
 " Shortcuts
@@ -26,7 +63,20 @@ vnoremap <space> zf
 vnoremap <C-c> "*y
 vnoremap <C-v> "*p
 
-" statusline
+" search visual selection
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+
+" Whitespace highlighting
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Funcs
 set laststatus=2
 
 function! GitBranch()
@@ -38,19 +88,17 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':' none '
 endfunction
 
-set statusline=
-set statusline+=%#StatusLine#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#CursorColumn#
-set statusline+=\ %f
-set statusline+=
-set statusline+=%=
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
+function! GitBlame()
+    let cmd=printf("git blame %s -L %d,%d | git log -n 1 --pretty=format:\" // %s // %s\"", getreg("%") , line("."), line("."), "%h", "%s")
+    let out=system(cmd)
+    if v:shell_error == 0
+        return out
+    else
+        return "n/a"
+    endif
+endfunction
 
+" statusline/airline
+let g:airline_theme="deus"
+let g:airline_powerline_fonts = 1
 
-
-" etc
-" if opening vim without arguments, open nerdtree
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
