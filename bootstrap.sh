@@ -105,7 +105,7 @@ function doIt() {
 
     [[ $SHELL == `which zsh` ]] && source ~/.zshrc
 
-    echo "Checks done and sync completed, make sure you run zsh and source .zshrc"
+    echo "Checks done and sync completed, make sure you run zsh and source .zshrc, and run :PlugInstall inside vim"
 }
 
 
