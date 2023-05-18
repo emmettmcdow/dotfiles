@@ -21,6 +21,10 @@ Plug 'vim-airline/vim-airline'
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
 Plug 'vim-airline/vim-airline-themes'
 
+" fzf - search through source code - https://github.com/junegunn/fzf.vim
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 
