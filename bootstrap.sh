@@ -108,7 +108,7 @@ function doIt() {
     echo "Checks done and sync completed, make sure you run zsh and source .zshrc, and run :PlugInstall inside vim"
 }
 
-
+#TODO: add dependency on the_silver_searcher
 # "Main" function
 cd "$(dirname "${BASH_SOURCE}")";
 git pull origin main &>/dev/null;
