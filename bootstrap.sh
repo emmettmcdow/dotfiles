@@ -27,6 +27,25 @@ function assertZSH() {
     fi
 }
 
+function assertccls() {
+    echo "---"
+    which ccls &>/dev/null && echo "✅ - ccls present" && return 0
+
+    echo "❌ - ccls not present, attempting to install"
+    if ! packageManager; then
+        echo "failed to install zsh, exiting"
+        return 1
+    fi
+
+    if sudo $PM install -y ccls  &>/dev/null ; then
+        echo "✅ - ccls installed"
+        return 0
+    else
+        echo "failed to install ccls, exiting"
+        return 1
+    fi
+}
+
 function assertOHMY() {
     # Check for oh-my-zsh
     echo "---"
@@ -75,7 +94,7 @@ function assertNode() {
 
         ;;
         yum)
-            sudo yum module install -y nodejs:20/common &>/dev/null || echo "failed to install node, exiting"1
+            sudo yum module install -y nodejs:20/common &>/dev/null || echo "failed to install node, exiting"
 
         ;;
         apt)
@@ -103,6 +122,8 @@ function doIt() {
         --exclude "Dockerfile" \
         -avh --no-perms . ~;
 
+    sed -ie 's^"clangd.path": .*"^"clangd.path": '\"$(which clangd)\"'^g' ~/.vim/coc-settings.json
+    sed -ie 's^"python.path": .*"^"python.pythonPath": '\"$(which python3)\"'^g' ~/.vim/coc-settings.json
     [[ $SHELL == `which zsh` ]] && source ~/.zshrc
 
     echo "Checks done and sync completed, make sure you run zsh and source .zshrc, and run :PlugInstall inside vim"
@@ -114,12 +135,12 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin main &>/dev/null;
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-        assertZSH && assertOHMY && assertPyEnv && assertNode && doIt;
+        assertZSH && assertOHMY && assertPyEnv && assertNode && assertccls && doIt;
 else
     read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
     echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        assertZSH && assertOHMY && assertPyEnv && assertNode && doIt;
+        assertZSH && assertOHMY && assertPyEnv && assertNode && assertccls && doIt;
     fi;
 fi;
 unset doIt;

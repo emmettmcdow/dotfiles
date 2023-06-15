@@ -3,6 +3,8 @@ call plug#begin()
 
 " Conquer Of Completion - https://github.com/neoclide/coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'clangd/coc-clangd'
+Plug 'fannheyward/coc-pyright'
 
 " Vim-polyglot - code highlighting
 Plug 'sheerun/vim-polyglot'
@@ -28,6 +30,10 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
+" Includes
+source ~/.vim/vimrc.coc
+
+
 " Settings
 set number
 set relativenumber
@@ -39,11 +45,6 @@ set wildmenu
 set scrolloff=20
 set foldmethod=indent
 set re=0
-" Indent Guides
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black   ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray ctermbg=gray
 
 " Tab settings, these should all equal the same
 set ts=4
@@ -53,9 +54,14 @@ set sw=4
 set expandtab
 
 
+" Indent Guides
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black   ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray ctermbg=gray
+
 
 " Shortcuts
-
 " esc - close search
 " nnoremap <silent> <esc> :noh<cr><esc>
 
@@ -70,18 +76,6 @@ vnoremap <C-v> "*p
 " search visual selection
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-"CoC mappings
-" Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
 
 " Whitespace highlighting
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -91,6 +85,7 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
 
 " Funcs
 set laststatus=2
