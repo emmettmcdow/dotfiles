@@ -128,3 +128,17 @@ export HOMEBREW_GITHUB_API_TOKEN=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
 # Observer
 alias observer_agent=~/.observer/bin/observer_agent.bash
 export DEV=10.212.119.246
+
+# Fun
+# Cow-spoken fortunes every time you open a terminal
+COWPATH="$COWPATH:$HOME/.cowsay/cowfiles"
+function cowsayfortune {
+    NUMOFCOWS=`cowsay -l | tail -n +2 | wc -w`
+    WHICHCOW=$((RANDOM%$NUMOFCOWS+1))
+    THISCOW=`cowsay -l | tail -n +2 | sed -e 's/\ /\'$'\n/g' | sed $WHICHCOW'q;d'`
+
+    #echo "Selected cow: ${THISCOW}, from ${WHICHCOW}"
+    fortune | cowsay -f $THISCOW -W 100
+}
+
+cowsayfortune
