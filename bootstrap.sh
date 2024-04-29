@@ -9,9 +9,6 @@ function doIt() {
         --exclude "Dockerfile" \
         --exclude "runtime" \
         -avh --no-perms . ~;
-
-    [[ $SHELL == `which zsh` ]] && source ~/.zshrc
-
     echo "Checks done and sync completed, make sure you run zsh and source .zshrc, and run :PlugInstall inside vim"
 }
 
