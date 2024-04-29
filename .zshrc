@@ -2,7 +2,7 @@
 #******************************************************************* Statusline
 precmd() {
   BRANCHY=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "n/a")
-  CLEAN_BRANCH=$([ -z "$(git status --porcelain)" ] || echo "\u001b[31m*")
+  CLEAN_BRANCH=$([ -z "$(git status --porcelain)" ] || echo "\u001b[31m*") 2>/dev/null
   LEFT="\n\u001b[32;1m${USER}@$(hostname) \u001b[0m${CLEAN_BRANCH}\u001b[33m${BRANCHY}\u001b[0m:\u001b[34m${PWD}"
   RIGHT="$(date)"
   LEFT_NOCOLOR="$(echo ${LEFT} | perl -pe 's/\e\[[0-9;]*m//g')"

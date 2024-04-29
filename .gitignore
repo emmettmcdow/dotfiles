@@ -16,3 +16,6 @@ Thumbs.db
 
 # Testing Dockerfile
 Dockerfile
+
+# Helix editor runtime
+runtime/

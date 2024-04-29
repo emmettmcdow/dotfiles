@@ -1,0 +1,28 @@
+[editor]
+line-number = "relative"
+auto-pairs = false # defaults to `true`
+
+[editor.indent-guides]
+render = true
+character = "┊" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.statusline]
+left = ["mode",
+        "spinner"]
+center = ["version-control",
+          "file-name"]
+right = ["diagnostics",
+         "selections",
+         "position",
+         "position-percentage",
+         "file-encoding",
+         "file-line-ending",
+         "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"

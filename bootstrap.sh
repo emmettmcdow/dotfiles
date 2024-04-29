@@ -7,6 +7,7 @@ function doIt() {
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
         --exclude "Dockerfile" \
+        --exclude "runtime" \
         -avh --no-perms . ~;
 
     [[ $SHELL == `which zsh` ]] && source ~/.zshrc
