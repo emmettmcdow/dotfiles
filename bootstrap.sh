@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 
 function doIt() {
     rsync --exclude ".git/" \
