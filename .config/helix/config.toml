@@ -1,14 +1,13 @@
 [editor]
 line-number = "relative"
 auto-pairs = false # defaults to `true`
-rulers = [80]
+rulers = [100]
 
 [editor.whitespace.render]
 tab = "all"
 
 [editor.whitespace.characters]
 tab = "→"
-tabpad = "·" # Tabs will look like "→···" (depending on tab width)
 
 [editor.indent-guides]
 render = true
