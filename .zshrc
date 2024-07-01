@@ -39,3 +39,7 @@ bindkey '\e[B' history-search-forward
 
 # never beep
 setopt NO_BEEP
+
+
+#*************************************************************** Environment
+export PATH="$(go env GOPATH)/bin:$PATH"
