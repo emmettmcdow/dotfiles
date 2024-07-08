@@ -15,7 +15,7 @@ character = "┊" # Some characters that work well: "▏", "┆", "┊", "⸽"
 skip-levels = 1
 
 [editor.lsp]
-display-inlay-hints = true
+display-inlay-hints = false
 
 [editor.statusline]
 left = ["mode",
