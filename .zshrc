@@ -43,3 +43,4 @@ setopt NO_BEEP
 
 #*************************************************************** Environment
 export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH="~/.cargo/bin:$PATH"
