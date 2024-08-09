@@ -9,7 +9,8 @@ export packages=( \
   "git" \
   "make" \
   "tar" \
-  "zsh"
+  "zsh" \
+  "bash-language-server"
 )
 
 function healthcheck() {
@@ -18,9 +19,9 @@ function healthcheck() {
   for p in "${packages[@]}"; do
     which "$p" &>/dev/null
     if [ "$?" ]; then
-      printf "%-8s   \033[32m%s\033[39m\n" "$p" "✓"
+      printf "%-20s   \033[32m%s\033[39m\n" "$p" "✓"
     else
-      printf "%-8s    \033[31m%s\033[39m\n" "$p" "✗"
+      printf "%-20s    \033[31m%s\033[39m\n" "$p" "✗"
     fi  
   done
 
