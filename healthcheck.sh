@@ -10,7 +10,9 @@ export packages=( \
   "make" \
   "tar" \
   "zsh" \
-  "bash-language-server"
+  "bash-language-server" \
+  "typescript-language-server" \
+  "typescript"
 )
 
 function healthcheck() {
@@ -18,10 +20,10 @@ function healthcheck() {
   # Make sure to update the width if we get a program gets too long
   for p in "${packages[@]}"; do
     which "$p" &>/dev/null
-    if [ "$?" ]; then
-      printf "%-20s   \033[32m%s\033[39m\n" "$p" "✓"
+    if [ "$?" -eq 0 ]; then
+      printf "%-30s   \033[32m%s\033[39m\n" "$p" "✓"
     else
-      printf "%-20s    \033[31m%s\033[39m\n" "$p" "✗"
+      printf "%-30s   \033[31m%s\033[39m\n" "$p" "✗"
     fi  
   done
 
