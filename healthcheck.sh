@@ -12,7 +12,9 @@ export packages=( \
   "zsh" \
   "bash-language-server" \
   "typescript-language-server" \
-  "typescript"
+  "typescript" \
+  "npx" \
+  "vscode-eslint-language-server"
 )
 
 function healthcheck() {
