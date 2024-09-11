@@ -44,3 +44,10 @@ setopt NO_BEEP
 #*************************************************************** Environment
 export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+
+#*************************************************************** Nice to have
+function swap()         
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}
