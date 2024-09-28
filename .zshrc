@@ -9,7 +9,7 @@ precmd() {
   RIGHTWIDTH=$(($COLUMNS-${#LEFT_NOCOLOR}))
   print $LEFT${(l:$RIGHTWIDTH:: :)RIGHT}
 }
-PROMPT="λ "
+PROMPT="%Bλ%b "
 RPROMPT=""
 
 #*************************************************************** Autocompletion
