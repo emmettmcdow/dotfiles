@@ -1,4 +1,5 @@
-theme = "onelight"
+theme = "darcula"
+# theme = "onelight"
 
 [editor]
 line-number = "relative"
