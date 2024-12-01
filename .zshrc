@@ -44,6 +44,8 @@ setopt NO_BEEP
 #*************************************************************** Environment
 export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+# aka haskell
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 #*************************************************************** Nice to have
 function swap()         
