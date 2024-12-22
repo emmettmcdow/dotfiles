@@ -47,6 +47,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # aka haskell
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
+# opt/apps/stuff from source
+export PATH="$PATH$(find "$HOME/apps" -depth 1 -type d | xargs -I {} printf ':%s'"
+
 #*************************************************************** Nice to have
 function swap()         
 {
