@@ -19,6 +19,18 @@ language-servers = ["typescript-language-server", "eslint"]
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript", "--write"] }
 auto-format = true
 
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "eslint"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+
 [language-server.eslint]
 args = ["--stdio"]
 command = "vscode-eslint-language-server"
