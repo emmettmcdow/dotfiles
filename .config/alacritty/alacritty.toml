@@ -1,2 +1,6 @@
+[window]
+padding = {x = 10, y = 50}
+option_as_alt = "Both"
+
 [env]
 term = "xterm-256color"
