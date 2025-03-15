@@ -54,6 +54,12 @@ PATH="$PATH$(find $HOME/apps -depth 1 -type d | xargs -I {} printf ':%s' {})"
 PATH="$PATH:$(npm get prefix -g)/bin"
 export PATH
 
+# Ocaml
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
+
+# This is mac only, shouldn't hurt anything though?
+echo 'export PATH="/usr/local/opt/binutils/bin:$PATH"' >> ~/.zshrc
+
 #*************************************************************** Nice to have
 function swap()         
 {
