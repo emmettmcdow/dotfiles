@@ -31,6 +31,11 @@ auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 language-servers = ["typescript-language-server", "tailwindcss-ls"]
 
+[[language]]
+name = "swift"
+auto-format = true
+formatter = { command = 'swiftformat' }
+
 [language-server.eslint]
 args = ["--stdio"]
 command = "vscode-eslint-language-server"
