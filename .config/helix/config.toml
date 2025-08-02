@@ -1,5 +1,6 @@
-theme = "darcula"
+# theme = "darcula"
 # theme = "onelight"
+theme = "term16-light"
 
 [editor]
 line-number = "relative"
@@ -36,3 +37,7 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+[keys.normal.space.t]
+"1" = ":theme term16_light"
+"2" = ":theme term16_dark"
