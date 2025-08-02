@@ -1,6 +1,6 @@
 # theme = "darcula"
 # theme = "onelight"
-theme = "term16-light"
+theme = "term16_light"
 
 [editor]
 line-number = "relative"
