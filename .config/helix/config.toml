@@ -7,11 +7,8 @@ line-number = "relative"
 auto-pairs = false # defaults to `true`
 rulers = [100]
 
-[editor.whitespace.render]
-tab = "all"
-
-[editor.whitespace.characters]
-tab = "→"
+[editor.file-picker]
+git-ignore = false
 
 [editor.indent-guides]
 render = true
@@ -37,6 +34,13 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.whitespace.characters]
+tab = "→"
 
 [keys.normal.space.t]
 "1" = ":theme term16_light"

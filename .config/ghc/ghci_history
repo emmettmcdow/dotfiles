@@ -1,0 +1,24 @@
+:quit
+lines content
+content
+let content :: IO String = readFile "./input.txt"
+content
+let content :: IO String = readFile "./data/input.txt"
+let content :: String = readFile "./data/input.txt"
+:quit
+sumSmallest a b
+let b :: [Integer] = [4, 3, 5, 3, 9, 3]
+let a :: [Integer] = [3, 4, 2, 1, 3, 3]
+let a :: [Integer]
+a :: [Integer]
+:load main.hs
+:quit
+quit
+abc :: Int
+popMin :: [Integer] -> (Integer, [Integer])
+:?
+popMin (x:xs)
+popMin x:[y] = ((min x y), [max x y])
+popMin x:[] = (x, [])
+popMin [] = (0, [])
+popMin :: [Integer] -> (Integer, [Integer])
