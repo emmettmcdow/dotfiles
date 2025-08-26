@@ -1,0 +1,14 @@
+# Images
+*.png
+*.svg
+
+# Environments
+node_modules/
+
+# Binaries
+*.dylib
+*.a
+*.pb
+
+# XCode stuff
+*.xc*

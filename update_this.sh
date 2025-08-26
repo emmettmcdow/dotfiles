@@ -9,7 +9,7 @@ function updateThis() {
         --exclude "LICENSE-MIT.txt" \
         --exclude "Dockerfile" \
         --exclude "runtime" \
-        -avh --no-perms ~/.config .;
+        -avh --no-perms ~/.config ~/.ignore .;
     echo ".config updated. Now commit and push your changes."
 }
 
