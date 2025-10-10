@@ -26,6 +26,14 @@ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
+name = "html"
+auto-format = false
+
+[[language]]
+name = "css"
+auto-format = false
+
+[[language]]
 name = "tsx"
 auto-format = true
 formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }

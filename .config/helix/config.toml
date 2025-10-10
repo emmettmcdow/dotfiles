@@ -6,9 +6,10 @@ theme = "term16_dark"
 line-number = "relative"
 auto-pairs = false # defaults to `true`
 rulers = [100]
+insert-final-newline = true
 
 [editor.file-picker]
-git-ignore = false
+git-ignore = true
 
 [editor.indent-guides]
 render = true
