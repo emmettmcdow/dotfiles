@@ -46,3 +46,6 @@ tab = "→"
 [keys.normal.space.t]
 "1" = ":theme term16_light"
 "2" = ":theme term16_dark"
+
+[keys.normal.space.z]
+"1" = ":sh zig test %{buffer_name}"
