@@ -1,5 +1,6 @@
 [[language]]
 name = "python"
+auto-format = true
 language-servers = ["pylsp", "pyright"]
 
 [language-server.pylsp.config.pylsp]
@@ -8,10 +9,9 @@ plugins.pyls_mypy.live_mode = true
 plugins.pylint.enabled = true
 plugins.flake8.enabled = true
 
-
 [language.formatter]
-command = "black"
-args = ["--line-length", "88", "--quiet", "-"]
+command = "bash"
+args = ["-c", "black - | isort -"]
 
 [[language]]
 name = "javascript"
