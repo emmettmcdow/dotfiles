@@ -51,5 +51,5 @@ tab = "→"
 "1" = ":sh zig test %{buffer_name}"
 
 [keys.normal.space.p]
-"1" = ":sh pytest %{buffer_name} 2>&1"
-"2" = ":sh pytest %{buffer_name}::%{selection} 2>&1"
+"1" = ":sh pytest %{buffer_name} 1>&2"
+"2" = ":sh pytest %{buffer_name}::%{selection} 1>&2"
