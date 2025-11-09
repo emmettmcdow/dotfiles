@@ -53,3 +53,6 @@ tab = "→"
 [keys.normal.space.p]
 "1" = ":sh pytest %{buffer_name} 1>&2"
 "2" = ":sh pytest %{buffer_name}::%{selection} 1>&2"
+
+[keys.normal.space.S]
+"1" = ":toggle soft-wrap.enable"
