@@ -1,2 +1,2 @@
-theme = light:ayu_light,dark:ayu
+theme = light:"Ayu Light",dark:"Ayu"
 mouse-scroll-multiplier = 0.5

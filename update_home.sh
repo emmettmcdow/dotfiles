@@ -9,6 +9,7 @@ function updateHome() {
         --exclude "LICENSE-MIT.txt" \
         --exclude "Dockerfile" \
         --exclude "runtime" \
+        --exclude ".config/alacritty" \
         -avh --no-perms . ~;
     echo "Checks done and sync completed, make sure you run zsh and source .zshrc."
 }
