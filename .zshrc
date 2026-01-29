@@ -70,3 +70,4 @@ function swap()
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
 export PATH="/usr/local/opt/binutils/bin:$PATH"
+export PATH="/usr/local/opt/binutils/bin:$PATH"
