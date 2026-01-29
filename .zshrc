@@ -61,13 +61,12 @@ export PATH
 # This is mac only, shouldn't hurt anything though?
 echo 'export PATH="/usr/local/opt/binutils/bin:$PATH"' >> ~/.zshrc
 
+export PATH="/usr/local/opt/binutils/bin:$PATH"
+
 #*************************************************************** Nice to have
 function swap()         
 {
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/usr/local/opt/binutils/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
