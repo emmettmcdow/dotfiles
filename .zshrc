@@ -43,31 +43,33 @@ setopt NO_BEEP
 
 
 #*************************************************************** Environment
+# Node (add NPM global bin to PATH early)
+PATH="$(npm get prefix -g)/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+
+# Go
 PATH="$(go env GOPATH)/bin:$PATH"
+
+# Rust
 PATH="$HOME/.cargo/bin:$PATH"
-# aka haskell
+
+# Haskell
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 # opt/apps/stuff from source
-PATH="$PATH$(find $HOME/apps -depth 1 -type d | xargs -I {} printf ':%s' {})"
+PATH="$PATH:$(find $HOME/apps -depth 1 -type d | xargs -I {} printf ':%s' {})"
 
-# Node
-PATH="$PATH:$(npm get prefix -g)/bin"
+# Binutils (Mac only)
+PATH="/usr/local/opt/binutils/bin:$PATH"
+
 export PATH
 
 # Ocaml
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 
-# This is mac only, shouldn't hurt anything though?
-echo 'export PATH="/usr/local/opt/binutils/bin:$PATH"' >> ~/.zshrc
-
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-
 #*************************************************************** Nice to have
-function swap()         
+function swap()
 {
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/usr/local/opt/binutils/bin:$PATH"
