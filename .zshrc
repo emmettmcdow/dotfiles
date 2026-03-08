@@ -53,6 +53,9 @@ PATH="$(go env GOPATH)/bin:$PATH"
 # Rust
 PATH="$HOME/.cargo/bin:$PATH"
 
+# Zig (zvm)
+PATH="$HOME/.zvm/bin:$HOME/.zvm/self:$PATH"
+
 # Haskell
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
@@ -61,6 +64,11 @@ PATH="$PATH:$(find $HOME/apps -depth 1 -type d | xargs -I {} printf ':%s' {})"
 
 # Binutils (Mac only)
 PATH="/usr/local/opt/binutils/bin:$PATH"
+
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
+PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 export PATH
 
