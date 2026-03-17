@@ -1,17 +1,25 @@
-
+# shellcheck shell=bash
 #******************************************************************* Statusline
+# If MONOREPO is set, skip git (avoids slow status in large repos)
 precmd() {
-  BRANCHY=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "n/a")
-  BRANCHY="${BRANCHY/topic\/emcdow/t}"
-  CLEAN_BRANCH=$([ -z "$(git status --porcelain)" ] || echo "\u001b[31m*") 2>/dev/null
+  if [[ -n "$MONOREPO" ]]; then
+    BRANCHY="???"
+    CLEAN_BRANCH=""
+  else
+    BRANCHY=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "n/a")
+    BRANCHY="${BRANCHY/topic\/emcdow/t}"
+    CLEAN_BRANCH=$([ -z "$(git status --porcelain)" ] || echo "\u001b[31m*") 2>/dev/null
+  fi
   LEFT="\n\u001b[32;1m${USER}@$(hostname) \u001b[0m${CLEAN_BRANCH}\u001b[33m${BRANCHY}\u001b[0m:\u001b[34m${PWD/#$HOME/~}"
   RIGHT="$(date +'%H:%M:%S %m/%d/%y')"
-  LEFT_NOCOLOR="$(echo ${LEFT} | perl -pe 's/\e\[[0-9;]*m//g')"
-  RIGHTWIDTH=$(($COLUMNS-${#LEFT_NOCOLOR}))
-  print $LEFT${(l:$RIGHTWIDTH:: :)RIGHT}
+  LEFT_NOCOLOR="$(echo "${LEFT}" | perl -pe 's/\e\[[0-9;]*m//g')"
+  RIGHTWIDTH=$((COLUMNS - ${#LEFT_NOCOLOR}))
+  printf '%b%*s\n' "$LEFT" "$RIGHTWIDTH" "$RIGHT"
 }
 PROMPT="%Bλ%b "
 RPROMPT=""
+# Reference so shellcheck sees use (zsh uses these for prompt display)
+: "${PROMPT}" "${RPROMPT}"
 
 #*************************************************************** Autocompletion
 # Stolen from:
@@ -26,6 +34,7 @@ setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
+: "${SAVEHIST}"  # reference so shellcheck sees use (zsh uses for history)
 HISTSIZE=999
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
@@ -57,10 +66,11 @@ PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.zvm/bin:$HOME/.zvm/self:$PATH"
 
 # Haskell
+# shellcheck source=/dev/null
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 # opt/apps/stuff from source
-PATH="$PATH:$(find $HOME/apps -depth 1 -type d | xargs -I {} printf ':%s' {})"
+PATH="$PATH:$(find "$HOME/apps" -depth 1 -type d | xargs -I {} printf ':%s' {})"
 
 # Binutils (Mac only)
 PATH="/usr/local/opt/binutils/bin:$PATH"
@@ -73,11 +83,12 @@ eval "$(pyenv init - zsh)"
 export PATH
 
 # Ocaml
+# shellcheck source=/dev/null
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 
 #*************************************************************** Nice to have
 function swap()
 {
     local TMPFILE=tmp.$$
-    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+    mv "$1" "$TMPFILE" && mv "$2" "$1" && mv "$TMPFILE" "$2"
 }
