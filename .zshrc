@@ -56,6 +56,9 @@ setopt NO_BEEP
 if [[ -x /nix/var/nix/profiles/default/bin/nix ]]; then
   PATH="/nix/var/nix/profiles/default/bin:$PATH"
 fi
+# WORK: Nix user profile
+[[ -n "$HOME" && -d "$HOME/.nix-profile/bin" ]] && PATH="$HOME/.nix-profile/bin:$PATH"
+
 # Node (add NPM global bin to PATH early)
 PATH="$(npm get prefix -g)/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
