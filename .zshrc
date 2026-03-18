@@ -52,6 +52,10 @@ setopt NO_BEEP
 
 
 #*************************************************************** Environment
+# WORK: Prefer default profile's nix (2.28.x) over system profile (2.17.x) when using local profile
+if [[ -x /nix/var/nix/profiles/default/bin/nix ]]; then
+  PATH="/nix/var/nix/profiles/default/bin:$PATH"
+fi
 # Node (add NPM global bin to PATH early)
 PATH="$(npm get prefix -g)/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
