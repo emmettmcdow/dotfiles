@@ -1,6 +1,6 @@
 # theme = "darcula"
 # theme = "onelight"
-theme = "term16_dark"
+theme = "zed_onedark"
 
 [editor]
 line-number = "relative"
@@ -44,8 +44,8 @@ tab = "all"
 tab = "→"
 
 [keys.normal.space.t]
-"1" = ":theme term16_light"
-"2" = ":theme term16_dark"
+"1" = ":theme zed_onelight"
+"2" = ":theme zed_onedark"
 
 [keys.normal.space.z]
 "1" = ":sh zig test %{buffer_name}"
