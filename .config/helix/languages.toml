@@ -47,3 +47,7 @@ formatter = { command = 'swiftformat' }
 [language-server.eslint]
 args = ["--stdio"]
 command = "vscode-eslint-language-server"
+
+[[language]]
+name = "c"
+language-servers = [{ name = "clangd", except-features = ["diagnostics"]}]

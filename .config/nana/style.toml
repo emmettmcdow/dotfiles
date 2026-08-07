@@ -1,0 +1,49 @@
+# nana style
+#
+# Edited in place: save the file and the editor redraws with it, no restart.
+# Colors are "#rgb", "#rrggbb" or "#rrggbbaa". Lengths are in points.
+
+[light]
+background = "#e4e4e4"
+foreground = "#2f2f2f"
+# Links, quotes and the selection wash. Defaults to the foreground.
+tertiary   = "#2f2f2f"
+
+[dark]
+background = "#2f2f2f"
+foreground = "#e4e4e4"
+tertiary   = "#e4e4e4"
+
+[layout]
+# Space between the window edge and the text, on every side.
+padding = 50
+
+# Space above and below a block. Only the first and last row of a block gets it, so the
+# rows within one stay tight; two blocks meeting get the sum of the two.
+heading_margin_y = 10
+code_margin_y    = 0
+quote_margin_y   = 10
+
+# How far a level of quote nesting indents, and the rule drawn in the gutter it vacated.
+quote_indent   = 24
+quote_rule_w   = 3
+
+# An h1 is `heading_scale` times the body size; each level down steps by `heading_step`.
+# Never smaller than the body text.
+heading_scale = 2.0
+heading_step  = 0.2
+
+[text]
+# Body type size. Commented out means the app's own font-size setting (and the
+# increase/decrease menu commands) decide it. Uncomment to pin it here instead.
+# font_size = 20
+
+[opacity]
+# How the derived colors sit against the ones they come from.
+highlight  = 0.25
+code       = 0.85
+code_bg    = 0.12
+quote      = 0.70
+quote_rule = 0.35
+
+
