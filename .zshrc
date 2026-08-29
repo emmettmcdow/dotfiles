@@ -77,7 +77,7 @@ PATH="$HOME/.zvm/bin:$HOME/.zvm/self:$PATH"
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 # opt/apps/stuff from source
-OPT_PATH=$(find "$HOME/apps" -maxdepth 1 -type d | xargs -I {} printf ':%s' {})
+OPT_PATH=$(find "$HOME/apps" -maxdepth 1 -type d | xargs -I {} printf ':%s' {}) 2>/dev/null
 PATH="$PATH:$OPT_PATH"
 
 # Binutils (Mac only)
@@ -102,3 +102,6 @@ function swap()
 }
 
 alias git-hot-refs="git branch --sort=committerdate | tail"
+
+# Some distros (like omarchy) strangely install hx as 'helix'. This fixes that.
+which hx >/dev/null || which helix >/dev/null && alias hx=helix
