@@ -1,2 +1,3 @@
 theme = light:"Ayu Light",dark:"Cobalt Next Dark"
 mouse-scroll-multiplier = 0.5
+command = /usr/bin/env zsh
