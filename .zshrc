@@ -60,11 +60,11 @@ fi
 [[ -n "$HOME" && -d "$HOME/.nix-profile/bin" ]] && PATH="$HOME/.nix-profile/bin:$PATH"
 
 # Node (add NPM global bin to PATH early)
-PATH="$(npm get prefix -g)/bin:$PATH"
+PATH="$(npm get prefix -g)/bin:$PATH" 2>/dev/null
 PATH="$HOME/.local/bin:$PATH"
 
 # Go
-PATH="$(go env GOPATH)/bin:$PATH"
+PATH="$(go env GOPATH)/bin:$PATH" 2>/dev/null
 
 # Rust
 PATH="$HOME/.cargo/bin:$PATH"
@@ -77,7 +77,8 @@ PATH="$HOME/.zvm/bin:$HOME/.zvm/self:$PATH"
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 # opt/apps/stuff from source
-PATH="$PATH:$(find "$HOME/apps" -depth 1 -type d | xargs -I {} printf ':%s' {})"
+OPT_PATH=$(find "$HOME/apps" -maxdepth 1 -type d | xargs -I {} printf ':%s' {})
+PATH="$PATH:$OPT_PATH"
 
 # Binutils (Mac only)
 PATH="/usr/local/opt/binutils/bin:$PATH"
@@ -85,7 +86,7 @@ PATH="/usr/local/opt/binutils/bin:$PATH"
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
 PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+eval "$(pyenv init - zsh 2>/dev/null)"
 
 export PATH
 
