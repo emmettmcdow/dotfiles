@@ -104,4 +104,4 @@ function swap()
 alias git-hot-refs="git branch --sort=committerdate | tail"
 
 # Some distros (like omarchy) strangely install hx as 'helix'. This fixes that.
-which hx >/dev/null || which helix >/dev/null && alias hx=helix
+which hx >/dev/null || ( which helix >/dev/null && alias hx=helix )

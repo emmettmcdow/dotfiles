@@ -10,6 +10,7 @@ function updateHome() {
         --exclude "Dockerfile" \
         --exclude "runtime" \
         --exclude ".config/alacritty" \
+        --exclude '.config/vcf*' \
         -avh --no-perms . ~;
     echo "Checks done and sync completed, make sure you run zsh and source .zshrc."
 }
