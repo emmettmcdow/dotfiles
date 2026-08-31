@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
 
 function updateHome() {
-    rsync --exclude ".git/" \
-        --exclude ".DS_Store" \
-        --exclude ".osx" \
-        --exclude "bootstrap.sh" \
-        --exclude "README.md" \
-        --exclude "LICENSE-MIT.txt" \
-        --exclude "Dockerfile" \
-        --exclude "runtime" \
-        --exclude ".config/alacritty" \
-        --exclude '.config/vcf*' \
-        -avh --no-perms . ~;
+    rsync --exclude-from="syncexclude" --cvs-exclude -avh --no-perms . ~;
     echo "Checks done and sync completed, make sure you run zsh and source .zshrc."
 }
 
@@ -27,4 +17,3 @@ else
         updateHome;
     fi;
 fi;
-unset doIt;

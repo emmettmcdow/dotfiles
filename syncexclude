@@ -1,0 +1,15 @@
+# files in this repo
+bootstrap.sh
+healthcheck.sh
+README.md
+LICENSE*
+syncexclude
+
+# rest
+.git/
+.DS_Store
+.osx
+Dockerfile
+runtime
+.config/alacritty
+.config/vcf*
