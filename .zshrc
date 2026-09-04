@@ -52,11 +52,6 @@ setopt NO_BEEP
 
 
 #*************************************************************** Environment
-OS=$( uname )
-if [[ "$OS" == "Darwin" ]]; then
-  . <( /opt/homebrew/bin/brew shellenv )
-fi
-
 # WORK: Prefer default profile's nix (2.28.x) over system profile (2.17.x) when using local profile
 if [[ -x /nix/var/nix/profiles/default/bin/nix ]]; then
   PATH="/nix/var/nix/profiles/default/bin:$PATH"
