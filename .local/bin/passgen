@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Print a random password that satisfies the character-class rules below."""
+from secrets import choice
+
+
+def chars_in_range(a: str, b: str) -> tuple[str, ...]:
+    assert len(a) == 1 and len(b) == 1
+    a_n = ord(a)
+    b_n = ord(b)
+    assert b_n >= a_n
+
+    return tuple(chr(n) for n in range(a_n, b_n + 1))
+
+
+LENGTH = 16
+UPPERS = chars_in_range("A", "Z")
+LOWERS = chars_in_range("a", "z")
+SPECIALS = ("!", "@", "#", "$", "%", "^", "&", "*")
+NUMBERS = chars_in_range("0", "9")
+
+# How many characters of each class the password must contain. A range means
+# "at least .start, at most .stop - 1"; lower the stop to cap a class.
+CLASSES = (
+    (UPPERS, range(1, LENGTH + 1)),
+    (LOWERS, range(1, LENGTH + 1)),
+    (SPECIALS, range(3, LENGTH + 1)),
+    (NUMBERS, range(3, LENGTH + 1)),
+)
+ALL_CHARS = tuple(c for chars, _ in CLASSES for c in chars)
+
+# Without these the loop below could never find a valid password.
+assert sum(allowed.start for _, allowed in CLASSES) <= LENGTH
+assert sum(allowed.stop - 1 for _, allowed in CLASSES) >= LENGTH
+
+
+def generate() -> str:
+    """Draw whole passwords until one meets every rule.
+
+    Rejecting complete candidates (rather than filtering character by
+    character) keeps the length exact and leaves every acceptable password
+    equally likely.
+    """
+    while True:
+        out = [choice(ALL_CHARS) for _ in range(LENGTH)]
+        counts = (sum(c in chars for c in out) for chars, _ in CLASSES)
+        if all(n in allowed for n, (_, allowed) in zip(counts, CLASSES)):
+            return "".join(out)
+
+
+if __name__ == "__main__":
+    print(generate())

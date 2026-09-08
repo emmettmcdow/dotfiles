@@ -22,3 +22,6 @@ runtime/
 
 # Delve runtime
 *.dbg_history
+
+# Python bytecode cache
+__pycache__/
