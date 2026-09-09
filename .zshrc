@@ -102,4 +102,4 @@ function swap()
 }
 
 # Some distros (like omarchy) strangely install hx as 'helix'. This fixes that.
-which hx >/dev/null || ( which helix >/dev/null && alias hx=helix )
+which hx >/dev/null || alias hx=$( which helix )
