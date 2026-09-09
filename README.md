@@ -14,6 +14,8 @@ after the first sync the helpers below are available as plain commands.
 - `depcheck` — report which expected tools are missing from `PATH`.
 - `git-hot-refs` — the branches with the most recent commits (`git hot-refs`).
 - `passgen` — print a random password.
+- `editor` — exec the first of `hx`/`helix`/`vim`/`vi` that exists;
+  `$EDITOR` points here so it resolves on any machine.
 
 `synchome` and `syncdot` assume the repo is at `~/dotfiles`; set `DOTFILES` to
 point them elsewhere.

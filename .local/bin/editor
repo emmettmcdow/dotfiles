@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Launch whichever editor this machine actually has.
+#
+# EDITOR cannot just be `hx`: some distros (like omarchy) install the helix
+# binary as `helix`, and the `hx` alias in .zshrc only helps things typed at
+# an interactive prompt -- git, crontab and friends exec $EDITOR directly and
+# never see an alias. Resolving here also means PATH is fully built by the
+# time we look, which it is not while .zshenv is running.
+set -euo pipefail
+
+for candidate in hx helix vim vi; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+        exec "$candidate" "$@"
+    fi
+done
+
+echo "editor: none of hx, helix, vim, vi are on PATH" >&2
+exit 127
