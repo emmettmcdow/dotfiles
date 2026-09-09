@@ -1,6 +1,5 @@
 # files in this repo
 bootstrap.sh
-healthcheck.sh
 README.md
 LICENSE*
 syncexclude

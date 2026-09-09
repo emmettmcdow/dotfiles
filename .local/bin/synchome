@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Copy the dotfiles repo over $HOME. Pass -f/--force to skip the confirmation.
+set -euo pipefail
+
+DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+if [ ! -d "$DOTFILES" ]; then
+    echo "synchome: no dotfiles repo at $DOTFILES; set DOTFILES to override" >&2
+    exit 1
+fi
+
+git -C "$DOTFILES" pull origin main &>/dev/null || true
+
+case "${1:-}" in
+    -f | --force) ;;
+    *)
+        read -r -n 1 -p "This may overwrite existing files in $HOME. Are you sure? (y/n) " reply || reply=""
+        echo ""
+        [[ $reply =~ ^[Yy]$ ]] || exit 0
+        ;;
+esac
+
+rsync --exclude-from="$DOTFILES/syncexclude" --cvs-exclude -avh --no-perms "$DOTFILES/" "$HOME"
+
+echo "Sync completed, make sure you run zsh and source .zshrc."

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Copy the live config out of $HOME and into the dotfiles repo, ready to commit.
+set -euo pipefail
+
+DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+if [ ! -d "$DOTFILES" ]; then
+    echo "syncdot: no dotfiles repo at $DOTFILES; set DOTFILES to override" >&2
+    exit 1
+fi
+
+rsync --exclude-from="$DOTFILES/syncexclude" --cvs-exclude -avh --no-perms \
+    "$HOME/.config" "$HOME/.ignore" "$HOME/.zshrc" "$DOTFILES"
+
+echo "$DOTFILES updated. Now commit and push your changes."

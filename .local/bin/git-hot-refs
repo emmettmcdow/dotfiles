@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# List the branches with the most recent commits, coldest first. Being on PATH
+# as git-hot-refs also makes this reachable as `git hot-refs`.
+set -euo pipefail
+
+git branch --sort=committerdate "$@" | tail
