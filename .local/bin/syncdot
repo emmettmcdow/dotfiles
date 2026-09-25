@@ -10,5 +10,8 @@ fi
 
 rsync --exclude-from="$DOTFILES/syncexclude" --cvs-exclude -avh --no-perms \
     "$HOME/.config" "$HOME/.ignore" "$HOME/.zshrc" "$DOTFILES"
+# Only our own files: the rest of ~/.claude is session state and history.
+rsync -avh --no-perms "$HOME/.claude/settings.json" "$DOTFILES/.claude/"
+rsync -avh --no-perms "$HOME/.claude/hooks/notify.sh" "$DOTFILES/.claude/hooks/"
 
 echo "$DOTFILES updated. Now commit and push your changes."
