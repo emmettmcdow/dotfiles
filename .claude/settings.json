@@ -40,5 +40,10 @@
     "swift-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true
   },
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "tap"
+  },
+  "voiceEnabled": true
 }
