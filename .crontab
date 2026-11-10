@@ -1,0 +1,1 @@
+*/5 9-17 * * 1-5 pgrep -qf '^/usr/bin/caffeinate -ims -t' || /usr/bin/caffeinate -ims -t $(( $(date -j -f \%H:\%M 18:00 +\%s) - $(date +\%s) ))
