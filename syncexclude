@@ -12,3 +12,5 @@ Dockerfile
 runtime
 .config/alacritty
 .config/vcf*
+.config/herdr/
+.config/gh/hosts.yml
