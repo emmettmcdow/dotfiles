@@ -5,7 +5,7 @@ theme = "zed_onedark"
 [editor]
 line-number = "relative"
 auto-pairs = false # defaults to `true`
-rulers = [100]
+rulers = [80]
 insert-final-newline = true
 
 [editor.file-picker]
