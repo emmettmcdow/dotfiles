@@ -14,6 +14,8 @@ after the first sync the helpers below are available as plain commands.
 - `depcheck` — report which expected tools are missing from `PATH`.
 - `git-hot-refs` — the branches with the most recent commits (`git hot-refs`).
 - `passgen` — print a random password.
+- `wakemon` — turn the monitors back on in the running Hyprland session (works
+  over SSH); Sunshine/Moonlight can't stream while the display is off.
 - `editor` — exec the first of `hx`/`helix`/`vim`/`vi` that exists;
   `$EDITOR` points here so it resolves on any machine.
 

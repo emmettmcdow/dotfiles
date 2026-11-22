@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Turn the monitors back on (DPMS on) in the running Hyprland session.
+#
+# Sunshine captures the screen straight from KMS, so while the display is
+# powered off Moonlight can't connect ("Couldn't find monitor [0]"). Run this
+# over SSH to wake it. Outside the desktop session HYPRLAND_INSTANCE_SIGNATURE
+# isn't set, so we find the live instance ourselves.
+set -euo pipefail
+
+if [ -z "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
+    runtime="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/hypr"
+    # Newest instance whose socket still exists; stale dirs can linger.
+    for dir in $(ls -td "$runtime"/*/ 2>/dev/null); do
+        if [ -S "$dir/.socket.sock" ]; then
+            HYPRLAND_INSTANCE_SIGNATURE="$(basename "$dir")"
+            break
+        fi
+    done
+    if [ -z "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
+        echo "wakemon: no running Hyprland instance found in $runtime" >&2
+        exit 1
+    fi
+    export HYPRLAND_INSTANCE_SIGNATURE
+fi
+
+# Lua-config Hyprland (current omarchy) takes a Lua expression; older
+# hyprlang-config versions take the classic dispatcher syntax.
+if ! hyprctl dispatch 'hl.dsp.dpms("on")' 2>/dev/null | grep -qx ok; then
+    hyprctl dispatch dpms on >/dev/null
+fi
+
+# The panel takes a moment to come up, so give dpmsStatus a few seconds to flip.
+status() {
+    hyprctl monitors | awk '/^Monitor/ {name=$2} /dpmsStatus/ {print name, ($2 == 1 ? "on" : "OFF")}'
+}
+for _ in $(seq 20); do
+    status | grep -q ' OFF$' || break
+    sleep 0.25
+done
+status
+! status | grep -q ' OFF$'
